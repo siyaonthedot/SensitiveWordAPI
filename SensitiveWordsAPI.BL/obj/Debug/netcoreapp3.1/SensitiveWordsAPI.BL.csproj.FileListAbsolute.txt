@@ -1,0 +1,13 @@
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\bin\Debug\netcoreapp3.1\SensitiveWordsAPI.BL.deps.json
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\bin\Debug\netcoreapp3.1\SensitiveWordsAPI.BL.dll
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\bin\Debug\netcoreapp3.1\SensitiveWordsAPI.BL.pdb
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\bin\Debug\netcoreapp3.1\SensitiveWordsAPI.DAL.dll
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\bin\Debug\netcoreapp3.1\SensitiveWordsAPI.DAL.pdb
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.BL.csproj.AssemblyReference.cache
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.BL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.BL.AssemblyInfoInputs.cache
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.BL.AssemblyInfo.cs
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.BL.csproj.CoreCompileInputs.cache
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.BL.csproj.CopyComplete
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.BL.dll
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.BL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.BL.pdb

@@ -1,0 +1,10 @@
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.DAL\bin\Debug\netcoreapp3.1\SensitiveWordsAPI.DAL.deps.json
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.DAL\bin\Debug\netcoreapp3.1\SensitiveWordsAPI.DAL.dll
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.DAL\bin\Debug\netcoreapp3.1\SensitiveWordsAPI.DAL.pdb
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.DAL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.DAL.csproj.AssemblyReference.cache
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.DAL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.DAL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.DAL.AssemblyInfoInputs.cache
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.DAL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.DAL.AssemblyInfo.cs
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.DAL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.DAL.csproj.CoreCompileInputs.cache
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.DAL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.DAL.dll
+C:\Users\mbamb\source\repos\SensitiveWordsAPI\SensitiveWordsAPI.DAL\obj\Debug\netcoreapp3.1\SensitiveWordsAPI.DAL.pdb

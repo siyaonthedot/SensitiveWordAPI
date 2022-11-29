@@ -13,9 +13,6 @@ using SensitiveWordsAPI.Model;
 using SensitiveWordsAPI.DAL.Repository;
 using AutoMapper;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SensitiveWordsAPI
 {
@@ -33,8 +30,8 @@ namespace SensitiveWordsAPI
         {
           //  services.AddControllers();
             services.AddMvc();
-            services.Configure<AppSettings>(Configuration.GetSection("MySettings"));
-           // services.AddScoped<ICacheService, CacheService>();
+            services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
+            services.AddScoped<ICacheService, CacheService>();
             services.AddScoped<ISensiveWordsService, SensiveWordsService>(); 
             services.AddScoped<IWordsRepostitory, WordsRepostitory>();
 

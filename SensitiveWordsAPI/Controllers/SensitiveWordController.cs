@@ -25,6 +25,7 @@ namespace SensitiveWordsAPI.Controllers
         private readonly ICacheService _cacheService;
         private readonly IWordsRepostitory _wordsRepostitory;
         private readonly IMapper _mapper;
+        private List<SensitiveWord> sensitiveWords;
 
 
         public SensitiveWordController(IOptions<AppSettings> appSettings,
@@ -35,30 +36,39 @@ namespace SensitiveWordsAPI.Controllers
             this._sensiveWordsService = sensiveWordsService;
             this._wordsRepostitory = wordsRepostitory;
             this._mapper = mapper;
-            _cacheService = cacheService;
+            this._cacheService = cacheService;
         }
 
         [HttpPost]
         [Route("MaskSensitiveWords")]
         public IActionResult MaskSensitiveWords(string textMessage)
-        {    
-            var data = _sensiveWordsService.MaskSensitiveWords(textMessage, appSettings.Value.DbConn);
-
-            if (data.Contains("*"))
+        {
+            var cacheData = _cacheService.GetData<IEnumerable<SensitiveWord>>("SensitiveWord");
+            if (cacheData != null)
             {
-                return Ok(data);
+                textMessage = _cacheService.CachedMaskSensitiveWords(textMessage, cacheData);
 
+               return Ok(textMessage);
             }
-            return NotFound(data);
+
+            textMessage = _sensiveWordsService.MaskSensitiveWords(textMessage, appSettings.Value.DbConn);
+            return Ok(textMessage);
+
         }
         [EnableCors("AllowOrigin")]
         [HttpGet]
         [Route("GetAllSensitiveWords")]
         public IActionResult GetAllSensitiveWords()
         {
- 
+            var cacheData = _cacheService.GetData<IEnumerable<SensitiveWord>>("SensitiveWord");
+            if (cacheData != null)
+            {
+                return Ok(cacheData);
+            }
+
             var data = _wordsRepostitory.GetAllSensitiveWords(appSettings.Value.DbConn);
             var expirationTime = DateTimeOffset.Now.AddMinutes(1.0);
+            _cacheService.SetData<IEnumerable<SensitiveWord>>("SensitiveWord", data, expirationTime);
 
             return Ok(data);
         }
@@ -68,10 +78,11 @@ namespace SensitiveWordsAPI.Controllers
         public IActionResult GetSensitiveWordByID(int Id)
         {
             var data = _wordsRepostitory.GetSensitiveWord(Id,appSettings.Value.DbConn);
-            var expirationTime = DateTimeOffset.Now.AddMinutes(1.0);
-            return Ok(data);
-        }
 
+            if (data != null) { return Ok(data); }
+
+            return NotFound(data);
+        }
 
         [EnableCors("AllowOrigin")]
         [HttpPost]
@@ -96,13 +107,8 @@ namespace SensitiveWordsAPI.Controllers
         {
             var commandModel = _mapper.Map<SensitiveWord>(model);
             var data = _wordsRepostitory.UpdateSensitiveWord(commandModel, appSettings.Value.DbConn);
-            if (data == "C200")
-            {
-                return Ok(data);
-            }
-
-            return NotFound(data);
-      
+     
+            return Ok(data);  
         }
 
         [EnableCors("AllowOrigin")]

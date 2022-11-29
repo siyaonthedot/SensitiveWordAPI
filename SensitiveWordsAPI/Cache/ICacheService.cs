@@ -1,5 +1,7 @@
 ﻿
+using SensitiveWordsAPI.DAL.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace SensitiveWordsAPI.BL.Service
 {
@@ -29,5 +31,7 @@ namespace SensitiveWordsAPI.BL.Service
         /// <param name="key"></param>
         /// <returns></returns>
         object RemoveData(string key);
+
+        string CachedMaskSensitiveWords(string sensitriveText, IEnumerable<SensitiveWord> data);
     }
 }

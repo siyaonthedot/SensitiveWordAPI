@@ -13,11 +13,14 @@ using SensitiveWordsAPI.Model;
 using SensitiveWordsAPI.DAL.Repository;
 using AutoMapper;
 using System;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Net.Http.Headers;
 
 namespace SensitiveWordsAPI
 {
     public class Startup
     {
+        readonly string OriginsPolicy = "OriginsPolicy";
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -28,8 +31,7 @@ namespace SensitiveWordsAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-          //  services.AddControllers();
-            services.AddMvc();
+                      
             services.Configure<AppSettings>(Configuration.GetSection("AppSettings"));
             services.AddScoped<ICacheService, CacheService>();
             services.AddScoped<ISensiveWordsService, SensiveWordsService>(); 
@@ -39,12 +41,17 @@ namespace SensitiveWordsAPI
 
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowOrigin",
-                    builder =>
-
-                        builder.WithOrigins("www.flash.com", "www.createivezone"));
-                                            
+                options.AddPolicy(name: OriginsPolicy,
+                                  policy =>
+                                  {
+                                      policy.WithOrigins("https://flash.co.za",
+                                                          "https://localhost:44350");
+                                  });
             });
+
+            services.AddControllers();
+            services.AddRazorPages();
+
 
             services.AddSwaggerGen(c =>
             {
@@ -61,6 +68,8 @@ namespace SensitiveWordsAPI
                     },
                 });
             });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,39 +77,28 @@ namespace SensitiveWordsAPI
         {
             if (env.IsDevelopment())
             {
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseDeveloperExceptionPage();
+
             }
 
             app.UseHttpsRedirection();
-
+            app.UseStaticFiles();
             app.UseRouting();
-
-            app.UseCors("AllowOrigin");
-
+            app.UseCors(OriginsPolicy);
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers().RequireCors(OriginsPolicy);
             });
 
             app.UseSwagger();
+            app.UseSwaggerUI();
 
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sensitive Words API V1");
-
-                // To serve SwaggerUI at application's root page, set the RoutePrefix property to an empty string.
-                c.RoutePrefix = string.Empty;
-            });
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-
-          
         }
+
+
+
+
     }
-}
+    }

@@ -16,6 +16,7 @@ namespace SensitiveWordsAPI.Controllers
 {
     [Produces("application/json")]
     [Route("api/SensitiveWord")]
+    //[EnableCors("AllowOrigin")]
 
     public class SensitiveWordController : Controller
     {
@@ -25,7 +26,6 @@ namespace SensitiveWordsAPI.Controllers
         private readonly ICacheService _cacheService;
         private readonly IWordsRepostitory _wordsRepostitory;
         private readonly IMapper _mapper;
-        private List<SensitiveWord> sensitiveWords;
 
 
         public SensitiveWordController(IOptions<AppSettings> appSettings,
@@ -46,18 +46,16 @@ namespace SensitiveWordsAPI.Controllers
             var cacheData = _cacheService.GetData<IEnumerable<SensitiveWord>>("SensitiveWord");
             if (cacheData != null)
             {
-                textMessage = _cacheService.CachedMaskSensitiveWords(textMessage, cacheData);
-
+               textMessage = _cacheService.CachedMaskSensitiveWords(textMessage, cacheData);
                return Ok(textMessage);
             }
-
             textMessage = _sensiveWordsService.MaskSensitiveWords(textMessage, appSettings.Value.DbConn);
             return Ok(textMessage);
-
         }
-        [EnableCors("AllowOrigin")]
+        
         [HttpGet]
         [Route("GetAllSensitiveWords")]
+        [EnableCors("OriginsPolicy")]
         public IActionResult GetAllSensitiveWords()
         {
             var cacheData = _cacheService.GetData<IEnumerable<SensitiveWord>>("SensitiveWord");
@@ -72,21 +70,22 @@ namespace SensitiveWordsAPI.Controllers
 
             return Ok(data);
         }
-        [EnableCors("AllowOrigin")]
+  
         [HttpGet]
         [Route("GetSensitiveWordByID")]
-        public IActionResult GetSensitiveWordByID(int Id)
+        [EnableCors("OriginsPolicy")]
+        public IActionResult GetSensitiveWordByID(int id)
         {
-            var data = _wordsRepostitory.GetSensitiveWord(Id,appSettings.Value.DbConn);
+            var data = _wordsRepostitory.GetSensitiveWord(id,appSettings.Value.DbConn);
 
             if (data != null) { return Ok(data); }
 
             return NotFound(data);
         }
 
-        [EnableCors("AllowOrigin")]
         [HttpPost]
         [Route("SaveSensitiveWord")]
+        [EnableCors("OriginsPolicy")]
         public IActionResult SaveSensitiveWord([FromBody] SensitiveWordsModel model)
         {
             var commandModel = _mapper.Map<SensitiveWord>(model);
@@ -100,9 +99,9 @@ namespace SensitiveWordsAPI.Controllers
             return NotFound(data);
         }
 
-        [EnableCors("AllowOrigin")]
         [HttpPut]
         [Route("UpdateSensitiveWord")]
+        [EnableCors("OriginsPolicy")]
         public IActionResult UpdateSensitiveWord([FromBody] SensitiveWordsModel model)
         {
             var commandModel = _mapper.Map<SensitiveWord>(model);
@@ -111,9 +110,9 @@ namespace SensitiveWordsAPI.Controllers
             return Ok(data);  
         }
 
-        [EnableCors("AllowOrigin")]
-        [HttpDelete]
+        [HttpGet]
         [Route("DeleteSensitiveWord")]
+        [EnableCors("OriginsPolicy")]
         public IActionResult DeleteSensitiveWord(int id)
         {
             var data = _wordsRepostitory.DeleteSensitiveWord(id, appSettings.Value.DbConn);

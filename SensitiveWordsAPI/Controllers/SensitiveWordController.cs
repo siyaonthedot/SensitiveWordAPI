@@ -110,7 +110,7 @@ namespace SensitiveWordsAPI.Controllers
             return Ok(data);  
         }
 
-        [HttpGet]
+        [HttpDelete]
         [Route("DeleteSensitiveWord")]
         [EnableCors("OriginsPolicy")]
         public IActionResult DeleteSensitiveWord(int id)

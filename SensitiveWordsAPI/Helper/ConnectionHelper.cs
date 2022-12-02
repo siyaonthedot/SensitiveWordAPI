@@ -3,13 +3,14 @@ using StackExchange.Redis;
 using System;
 using System.Configuration;
 
-namespace SensitiveWordsAPI.DAL.Utility
+namespace SensitiveWordsAPI.Helper
 {
     public class ConnectionHelper
     {
         static ConnectionHelper()
         {
-            ConnectionHelper.lazyConnection = new Lazy<ConnectionMultiplexer>(() => {
+            lazyConnection = new Lazy<ConnectionMultiplexer>(() =>
+            {
                 return ConnectionMultiplexer.Connect(ConfigurationManager.AppSetting["RedisURL"]);
             });
         }

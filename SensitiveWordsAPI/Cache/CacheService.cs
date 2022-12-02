@@ -8,6 +8,7 @@ using System.Text;
 using System.Collections.Generic;
 using SensitiveWordsAPI.DAL.Entities;
 using System.Linq;
+using SensitiveWordsAPI.Helper;
 
 namespace SensitiveWordsAPI.BL.Service
 {

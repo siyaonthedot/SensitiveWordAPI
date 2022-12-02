@@ -1,7 +1,8 @@
 ﻿using StackExchange.Redis;
 using Microsoft.Extensions.Configuration;
 using System.IO;
-namespace SensitiveWordsAPI.DAL.Utility
+
+namespace SensitiveWordsAPI.Helper
 {
     static class ConfigurationManager
     {
